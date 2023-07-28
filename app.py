@@ -8,22 +8,27 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation.utils import GenerationConfig
 
 cache_dir = './'
+os.system('mkdir /home/xlab-app-center/.cache/model')
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/config.json")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/configuration_internlm.py")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/generation_config.json")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/modeling_internlm.py")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/pytorch_model.bin.index.json")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/special_tokens_map.json")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/tokenization_internlm.py")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/tokenizer.model")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/tokenizer_config.json")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/pytorch_model-00001-of-00002.bin")
+os.system("cd /home/xlab-app-center/.cache/model && wget https://download.openxlab.org.cn/models/thomas-yanxin/MindChat-InternLM-7B/weight/pytorch_model-00002-of-00002.bin")
 
-snapshot_download('X-D-Lab/MindChat-Baichuan-13B',
-                  cache_dir=cache_dir,
-                  revision='v1.0.2')
-
-tokenizer = AutoTokenizer.from_pretrained(cache_dir +
-                                          "X-D-Lab/MindChat-Baichuan-13B",
+tokenizer = AutoTokenizer.from_pretrained('/home/xlab-app-center/.cache/model',
                                           use_fast=False,
                                           trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained(cache_dir +
-                                             "X-D-Lab/MindChat-Baichuan-13B",
+model = AutoModelForCausalLM.from_pretrained("/home/xlab-app-center/.cache/model",
                                              device_map="auto",
                                              torch_dtype=torch.float16,
                                              trust_remote_code=True)
-model.generation_config = GenerationConfig.from_pretrained(
-    cache_dir + "X-D-Lab/MindChat-Baichuan-13B")
+model.generation_config = GenerationConfig.from_pretrained("/home/xlab-app-center/.cache/model")
 
 
 title = "🐋MindChat: 漫谈心理大模型"
