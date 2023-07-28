@@ -4,6 +4,5 @@ cpm_kernels
 sentencepiece
 streamlit
 transformers_stream_generator
-gradio==3.37
-openxlab
+gradio==3.37.0
 modelscope
