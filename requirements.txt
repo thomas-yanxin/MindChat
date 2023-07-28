@@ -5,3 +5,4 @@ sentencepiece
 streamlit
 transformers_stream_generator
 gradio==3.37
+openxlab
