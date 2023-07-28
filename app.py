@@ -1,6 +1,6 @@
 import os
 import time
-
+os.system('pip install modelscope')
 import gradio as gr
 import torch
 from modelscope.hub.snapshot_download import snapshot_download
