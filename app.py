@@ -1,4 +1,5 @@
 import os
+os.system('pip install gradio==3.37.0')
 import time
 import gradio as gr
 import torch
